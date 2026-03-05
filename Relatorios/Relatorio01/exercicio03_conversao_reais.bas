@@ -1,7 +1,7 @@
 'Declaracao de variaveis
-Dim dolar As double 
-Dim euro As double
-Dim valor As double
+Dim dolar As Double 
+Dim euro As Double
+Dim valor As Double
 
 'Entrada de dados
 print "Digite o valor que deseja converter para dolar e euro: "
