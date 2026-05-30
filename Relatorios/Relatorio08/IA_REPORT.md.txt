@@ -1,0 +1,153 @@
+Melhor descrição para colocar no commit
+
+Exercicio 2 Cenário: Em Overwatch, todos os heróis são capazes de usar sua habilidade definitiva (Ultimate), mas a ação de cada um é única. Tarefa: 1.Crie uma classe base Heroi com um método __init__ que receba o nome e a funcao (Tanque, Dano, Suporte). 2.Crie um método usar_ultimate() na classe Heroi, forçando as classes filhas a implementá-lo. 3.Crie duas classes filhas, Tanque e Dano, que herdem de Heroi. 4.Em ambas as classes filhas, sobrescreva o método usar_ultimate() para imprimir a ação específica da função. 5.No main, crie uma lista (list) e adicione instâncias de Tanque e Dano. 6.Percorra a lista e chame o método usar_ultimate() em cada herói
+
+Perfeito 👍 esse exercício é de Python com classe abstrata + polimorfismo.
+
+✔ Melhor descrição (recomendada)
+Exercicio02 em Python - Implementacao de classe abstrata Heroi com metodo usar_ultimate(), utilizando heranca e polimorfismo com as classes Tanque e Dano
+✔ Versão mais formal (para relatório)
+Relatorio08 - Exercicio02 em Python: uso de classe abstrata Heroi com metodo usar_ultimate(), sobrescrito nas classes Tanque e Dano e executado via lista polimorfica
+✔ Versão curta (ideal para commit)
+Exercicio02 em Python - heranca e polimorfismo (Heroi)
+💡 Por que essa descrição está correta?
+
+Ela cobre exatamente o que o exercício pede:
+
+✔ classe base (Heroi)
+✔ método abstrato (usar_ultimate)
+✔ herança (Tanque e Dano)
+✔ sobrescrita de método
+✔ lista de objetos (list)
+✔ polimorfismo com loop
+🔥 Dica importante (Python)
+
+Como o exercício pede “forçar” implementação, o ideal é usar:
+
+from abc import ABC, abstractmethod
+
+E fazer:
+
+class Heroi(ABC):
+    @abstractmethod
+    def usar_ultimate(self):
+        pass
+
+👉 Isso garante que as classes filhas precisem implementar o método.
+
+🧠 Resumo rápido
+Classe abstrata em Python = ABC + @abstractmethod
+Polimorfismo = mesma funcao, comportamentos diferentes
+
+----------------------------------------------------------------------
+Cenário: O protagonista de Persona 5 (Joker) possui sua
+arma de combate (uma faca) e agrega membros ao seu
+time (Phantom Thieves).
+Tarefa:
+1.Crie uma classe ArmaCorpoACorpo (Composição).
+2.Crie uma classe PhantomThieves. Esta será a classe
+agregada, dos membros da equipe do Joker. Com o
+__init__ recebendo nome e arma.
+3.Crie a classe Joker.
+Composição: No método __init__, instancie um
+objeto ArmaCorpoACorpo internamente. A arma é
+criada e gerenciada por Joker.
+Agregação: O construtor de Joker deve receber
+uma lista (list[PhantomThieves]) de membros da
+equipe como parâmetro e atribuí-la a um atributo.
+4.Crie um método em Joker chamado mostrar_equipe()
+que itera sobre a lista agregada e imprime os dados de
+cada membro (Adicione instâncias de PhantomThieves
+à sua equipe).
+
+Perfeito 👏 esse exercício mistura Python + composição + agregação + listas, bem típico de prova.
+
+✔ Melhor descrição (recomendada)
+Exercicio03 em Python - Implementacao de composicao e agregacao com classes Joker, ArmaCorpoACorpo e PhantomThieves, utilizando listas para gerenciamento da equipe
+✔ Versão mais formal (para relatório)
+Relatorio08 - Exercicio03 em Python: uso de composicao (ArmaCorpoACorpo) e agregacao (PhantomThieves) na classe Joker, com iteracao de lista para exibicao da equipe
+✔ Versão curta (ideal para commit)
+Exercicio03 em Python - composicao e agregacao (Joker)
+💡 Por que essa descrição está correta?
+
+Ela cobre exatamente o que o exercício cobra:
+
+✔ composição → Joker cria sua própria ArmaCorpoACorpo
+✔ agregação → recebe lista de PhantomThieves
+✔ uso de listas (list)
+✔ iteração com método (mostrar_equipe)
+✔ relacionamento entre objetos
+🔥 Dica de prova (ESSENCIAL)
+
+Aqui está o ponto mais importante:
+
+✔ Composição (dentro da classe)
+self.arma = ArmaCorpoACorpo()
+
+👉 a arma nasce com o Joker
+
+✔ Agregação (vem de fora)
+def __init__(self, equipe):
+    self.equipe = equipe
+
+👉 a equipe já existe antes
+
+🧠 Resumo rápido
+Composicao = dependencia forte (arma)
+Agregacao = relacao externa (equipe)
+
+-------------------------------------------------------------------------------------------------------
+Cenário: Em Night City, muitos elementos do jogo (personagens, veículos, robôs) são Hackeaveis e Customizaveis. Tarefa: 1.Crie uma classe Interface base chamada Cibernetico. 2.Defina um método abstrato chamado realizar_hack() nesta classe. 3.Crie uma classe Implante (Composição) com um atributo custo e funcao em seu __init__. 4.Crie a classe NetRunner que herda de Cibernetico. No __init__, ele deve compor um objeto Implante Ele deve implementar o método realizar_hack(). 5.Crie uma classe Faccao que agregue uma lista de objetos do tipo Cibernetico em seu construtor. 6.No main, crie uma instância de Faccao e adicione múltiplos NetRunners a ela. Demonstre que a Faccao pode mandar todos os membros agregados executarem o método realizar_hack().
+
+Perfeito 👏 esse é um exercício bem completo — envolve interface (classe abstrata), composição, agregação e polimorfismo em Python.
+
+✔ Melhor descrição (recomendada)
+Exercicio04 em Python - Implementacao de interface Cibernetico com metodo realizar_hack(), utilizando composicao (Implante), agregacao (Faccao) e polimorfismo com NetRunner
+✔ Versão mais formal (para relatório)
+Relatorio08 - Exercicio04 em Python: uso de classe abstrata Cibernetico com metodo realizar_hack(), composicao com Implante e agregacao de objetos em Faccao com execucao polimorfica
+✔ Versão curta (ideal para commit)
+Exercicio04 em Python - interface, composicao e agregacao
+💡 Por que essa descrição está correta?
+
+Ela cobre todos os conceitos exigidos:
+
+✔ interface/classe abstrata (Cibernetico)
+✔ método abstrato (realizar_hack)
+✔ herança (NetRunner)
+✔ composição (Implante)
+✔ agregação (Faccao com lista)
+✔ polimorfismo (loop chamando o método)
+🔥 Dica de prova (ESSENCIAL)
+✔ Interface em Python
+from abc import ABC, abstractmethod
+class Cibernetico(ABC):
+    @abstractmethod
+    def realizar_hack(self):
+        pass
+✔ Composição (NetRunner cria o Implante)
+self.implante = Implante(custo, funcao)
+
+👉 pertence totalmente ao objeto
+
+✔ Agregação (Faccao recebe lista)
+def __init__(self, membros):
+    self.membros = membros
+
+👉 objetos existem independentemente
+
+🧠 Resumo rápido
+Interface = obriga implementacao
+Composicao = objeto interno (Implante)
+Agregacao = lista externa (Faccao)
+Polimorfismo = mesma funcao, comportamentos diferentes
+💥 O que o professor quer ver no final
+
+Algo como:
+
+for membro in faccao.membros:
+    membro.realizar_hack()
+
+👉 cada NetRunner executando sua própria lógica
+👉 isso demonstra polimorfismo funcionando
+----------------------------------------------------------------------------------------------
+OBs: As informações recebidas foram claras, indicando um resumo dos exercícios e conceitos utilizados. Além de ajudar na descrição, também ajudou na separação do código e com exemplos ajudando na resoluções dos exercícios.  
