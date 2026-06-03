@@ -56,8 +56,7 @@ main = do
     mapM_ putStrLn (descreverTodasBebidas pedido1)
 
     putStrLn $
-        "\nValor total do Pedido 1: R$ "
-        ++ show (valorPedido pedido1)
+        "\nValor total do Pedido 1: R$ " ++ show (valorPedido pedido1)
 
     putStrLn $ primeiraBebida pedido1
 
@@ -65,7 +64,6 @@ main = do
     mapM_ putStrLn (descreverTodasBebidas pedido2)
 
     putStrLn $
-        "\nValor total do Pedido 2: R$ "
-        ++ show (valorPedido pedido2)
+        "\nValor total do Pedido 2: R$ " ++ show (valorPedido pedido2)
 
     putStrLn $ primeiraBebida pedido2
