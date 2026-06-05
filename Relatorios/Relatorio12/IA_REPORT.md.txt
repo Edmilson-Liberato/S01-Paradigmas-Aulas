@@ -1,0 +1,272 @@
+Verificar possível erro no codigo abaixo: 
+
+nomeRepositorio :: String
+nomeRepositorio = "Cafe Leblanc"
+
+data Bebida = Bebida String String Double
+
+data StatusPedido = Aberto | Entregue | Cancelado
+
+data Pedido = Pedido [Bebida] StatusPedido
+
+descreverBebida :: Bebida -> String
+descreverBebida l =
+    let (Bebida nome tipo preco) = l
+    in nome ++ " - " ++ tipo ++ " (R$ " ++ show preco ++ ")"
+
+valorPedido :: Pedido -> Double
+valorPedido pedido
+    | status == Cancelado = 0.0
+    | otherwise = sum (map (\(Bebida _ _ preco) -> preco) bebidas)
+
+    where
+        (Pedido bebidas status) = pedido
+
+descreverTodasBebidas :: Pedido -> [String]
+descreverTodasBebidas (Pedido bebidas _) =
+    map descreverBebida bebidas
+
+
+
+main :: IO ()
+main = do
+    putStrLn "Cafe Leblanc"
+    putStrLn $ "Cafeteria: " ++ nomeRepositorio
+
+    let pedido1 =
+            Pedido
+                [ Bebida "Cafe Gourmet" "Cafe" 18.00
+                , Bebida "Cappuccino" "Cafe" 15.00
+                , Bebida "Cafe Expresso" "Cafe" 5.00
+                ]
+                Entregue
+
+    let pedido2 =
+            Pedido
+                [ Bebida "Chocolate Quente" "Chocolate" 8.00
+                , Bebida "Cafe Longo" "Cafe" 6.00
+                ]
+                Cancelado
+
+    putStrLn "\nBebidas do Pedido 1:"
+    mapM_ putStrLn (descreverTodasBebidas pedido1)
+
+    putStrLn $
+        "\nValor total do Pedido 1: R$ "
+        ++ show (valorPedido pedido1)
+
+    putStrLn $ primeiraBebida pedido1
+
+    putStrLn "\nBebidas do Pedido 2:"
+    mapM_ putStrLn (descreverTodasBebidas pedido2)
+
+    putStrLn $
+        "\nValor total do Pedido 2: R$ "
+        ++ show (valorPedido pedido2)
+
+    putStrLn $ primeiraBebida pedido2
+
+
+
+Sim, há alguns erros que impedirão a compilação.
+
+1. Falta deriving (Eq) em StatusPedido
+
+Você está fazendo:
+
+status == Cancelado
+
+Mas o tipo foi declarado como:
+
+data StatusPedido = Aberto | Entregue | Cancelado
+
+Deve ser:
+
+data StatusPedido = Aberto | Entregue | Cancelado
+    deriving (Eq)
+
+2. A função primeiraBebida não existe
+
+No main você chama:
+
+putStrLn $ primeiraBebida pedido1
+
+e
+
+putStrLn $ primeiraBebida pedido2
+
+Mas a função não foi definida.
+
+Adicione:
+
+primeiraBebida :: Pedido -> String
+primeiraBebida (Pedido [] _) =
+    "Nenhuma bebida encontrada."
+
+primeiraBebida (Pedido ((Bebida nome _ _):_) _) =
+    "Primeira bebida: " ++ nome
+3. O restante está correto
+
+Estas partes estão corretas:
+
+descreverBebida
+valorPedido
+descreverTodasBebidas
+mapM_ putStrLn (descreverTodasBebidas pedido1)
+sum (map (\(Bebida _ _ preco) -> preco) bebidas)
+Código mínimo para corrigir
+
+Troque:
+
+data StatusPedido = Aberto | Entregue | Cancelado
+
+por
+
+data StatusPedido = Aberto | Entregue | Cancelado
+    deriving (Eq)
+
+e acrescente antes do main:
+
+primeiraBebida :: Pedido -> String
+primeiraBebida (Pedido [] _) =
+    "Nenhuma bebida encontrada."
+
+primeiraBebida (Pedido ((Bebida nome _ _):_) _) =
+    "Primeira bebida: " ++ nome
+
+Com essas duas correções, o programa deve compilar normalmente.
+-------------------------------------------------------------------------------------------------------------------------------------------------
+Quais são os itens do jogo, cujo o personagem é o Link?
+
+Se você está se referindo ao universo de The Legend of Zelda, onde o personagem principal é o herói Link, existem muitos itens icônicos. Alguns dos mais conhecidos são:
+
+Armas
+Master Sword — a espada lendária que bane o mal.
+Biggoron's Sword
+Arco e Flechas.
+Martelo Megaton.
+Escudos
+Hylian Shield
+Mirror Shield (Escudo Espelho).
+Deku Shield.
+Ferramentas
+Hookshot / Longshot (gancho para alcançar lugares distantes).
+Boomerang.
+Bombas.
+Lanterna.
+Magic Rods (cajados mágicos).
+Instrumentos
+Ocarina of Time
+Wind Waker.
+Harpa da Deusa.
+Itens de cura e consumíveis
+Poções Vermelha, Azul e Verde.
+Fadas.
+Maçãs e outros alimentos.
+Elixires.
+Relíquias importantes
+Triforce
+Pedras Espirituais.
+Medallions.
+Tears of Light.
+
+Verificar possível erro no codigo abaixo: 
+
+nomedaLoja :: String
+nomedaLoja = "Lojas de Hyrule"
+
+data Item = Item String String Double
+
+data StatusCompra = Pendente | Concluida | Cancelada
+    deriving (Eq)
+
+data Compra = Compra [Item] StatusCompra
+
+descreverItem :: Item -> String
+descreverItem 1 =
+    let (Item nome categoria preco) = 1
+    in nome ++ " - " ++ categoria ++ " (R$ " ++ show preco ++ ")"
+
+totalItens :: [Item] -> Double
+totalItens itens =
+    sum (map (\(Item _ _ preco) -> preco) itens)
+
+valorFinal :: Compra -> Double
+valorFinal compra
+    | status == Cancelada = 0.0
+    | total > 200         = total * 0.9
+    | otherwise           = total
+
+    where
+        (Compra itens status) = compra
+        total = totalItens itens
+
+descreverTodosItens :: Compra -> [String]
+descreverTodosItens (Compra itens _) =
+    map descreverItem itens
+
+main :: IO ()
+main = do
+    putStrLn "\n--- Lojas de Hyrule ---"
+    putStrLn $ "Loja: " ++ nomedaLoja
+
+    let compra =
+            Compra
+                [ Item "Master Sword" "Arma" 100.00
+                , Item "Hylian Shield" "Escudo" 70.00
+                , Item "Poção Verde" "Consumivel" 15.00
+                ]
+                Concluida
+
+    putStrLn "\nItens da compra:" 
+    mapM_ putStrLn (descreverTodosItens compra)
+
+    putStrLn $ "\nValor final da compra: R$ " ++ show (valorFinal compra)
+
+
+
+Seu código está quase correto. O principal erro está na função descreverItem.
+
+Você escreveu:
+
+descreverItem :: Item -> String
+descreverItem 1 =
+    let (Item nome categoria preco) = 1
+    in nome ++ " - " ++ categoria ++ " (R$ " ++ show preco ++ ")"
+
+Em Haskell, 1 é um número inteiro, não uma variável. Você provavelmente quis usar uma variável
+
+Corrija para:
+
+descreverItem :: Item -> String
+descreverItem i =
+    let (Item nome categoria preco) = i
+    in nome ++ " - " ++ categoria ++ " (R$ " ++ show preco ++ ")"
+
+Ou usando pattern matching diretamente:
+
+descreverItem :: Item -> String
+descreverItem (Item nome categoria preco) =
+    nome ++ " - " ++ categoria ++ " (R$ " ++ show preco ++ ")"
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+No anime Casa de Banhos da Yubaba quais são os tipos de serviços?
+
+Na animação Spirited Away (conhecida no Brasil como A Viagem de Chihiro), a Casa de Banhos da Yubaba atende espíritos e divindades. O filme não apresenta uma lista oficial de serviços, mas mostra ou sugere vários tipos de atendimento que você pode usar no exercício.
+
+Alguns serviços inspirados no filme são:
+
+Banho Termal — serviço principal da casa de banhos.
+Limpeza Espiritual — remoção de sujeira e impurezas espirituais.
+Purificação de Maldições — tratamento para espíritos contaminados.
+Massagem Relaxante — serviço de bem-estar.
+Tratamento Premium — atendimento especial para clientes importantes.
+Banho Aromático — banho com ervas e essências.
+Esfoliação Espiritual — limpeza profunda.
+Banho Medicinal — recuperação de energia espiritual.
+Lavagem de Roupas Cerimoniais — preparação de vestimentas.
+Hospedagem para Espíritos — acomodação temporária.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+OBS: As informações da IA foram objetivas e claras, ajudando nos principais erros nos códigos que foram solicitados correções. Permitindo entender o que estava faltando e o que não prestei atenção durante o desenvolvimento. Além do código, também me ajudou a entender melhor sobre o cenário do jogo e anime, indicando algumas informações que poderia ter colocado no código, como o tipo de arma ou banho.  
