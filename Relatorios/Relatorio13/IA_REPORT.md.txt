@@ -1,0 +1,225 @@
+Melhor descrição para colocar no commit
+
+Exercício 1 — Farmácia da Maomao
+Maomao precisa calcular a dosagem e o preço das ervas que prepara para seus pacientes.Cada erva tem um preço base, e a dosagem varia de acordo com o peso e a idade dequem vai tomar.
+Defina um tipo Erva com os campos nome e precoBase.
+Implement
+e calculaDosagem :: Double -> Int -> String que recebe peso e idade e usaguards para retornar a dosagem como texto — "10ml" para crianças pequenas ouabaixo do peso, "25ml" para a faixa intermediária e "50ml" para os demais casos.
+Implement
+e ajustaPreco :: Erva -> Double que usa pattern matching no nome da ervapara aplicar o fator de preço — "Ginseng" multiplica por 3.0, "Lotus" multiplica por 1.5 equalquer outro retorna o preço base sem alteração.
+Implemente descricaoErva :: Erva -> Double -> Int -> String que recebe uma erva, opeso e a idade do paciente e retorna uma String com o nome d
+a erva, o preço ajustadoe a dosagem indicada.
+Na main, crie três ervas — "Ginseng", "Lotus" e "Camomila" — e exiba a descrição parapelo menos dois pacientes com idades e pesos diferentes, cobrindo todos os casos dedosagem.
+09
+
+✔ Melhor descrição (recomendada)
+Exercicio01 em Lisp - Sistema de dosagem e precificacao de ervas da Farmacia da Maomao utilizando estruturas, condicionais e manipulacao de dados para calcular dosagem e preco ajustado
+✔ Versão mais formal (para relatório)
+Relatorio13 - Exercicio01 em Lisp: implementacao da estrutura Erva e de funcoes para calculo de dosagem, ajuste de preco e descricao de ervas com base no peso e idade do paciente
+✔ Versão curta (ideal para commit)
+Exercicio01 em Lisp - Farmacia da Maomao
+💡 Conceitos trabalhados neste exercício
+✔ Estruturas (defstruct)
+✔ Funções (defun)
+✔ Condicionais (cond)
+✔ Manipulação de strings
+✔ Acesso a campos de estruturas
+✔ Regras de negócio (dosagem e ajuste de preço)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Exercício 2 — Fauna de Planet 4546B O Sca nner de mão do Ryley está catalogando as criaturas encontradas em 4546B. Cadacriatura registrada tem seu ambiente, nível de perigo e tempo de vida, e o sistemaprecisa filtrar e gerar relatórios sobre elas. D efina o tipo Criatura com os campos nome, ambiente, periculosidade e vidaM edia. Crie o tipo Pe riculosidade com os construtores Baixa, Media e Alta. Na main, defina uma lista catalogo com pelo menos quatro criaturas — um Peeper dasSafe Shallows com periculosidade Baixa, um Reaper Leviathan com Alta, e duascriaturas do ambiente "Deep" à sua escolha. Implemente filtraPorPerigo :: [Criatura] -> [Criatura] usando filter para retornarapenas as criaturas cuja periculosidade não seja Baixa. Implemente relatorioProfundidade :: [Criatura] -> [Stri ng] que primeiro filtra só ascriaturas do ambiente "Deep" e depois usa map para formatar cada uma como "[NOME]: Vive em [AMBIENTE]". Implemente descricaoCriatura :: Criatura -> String que retorna uma String com nome,ambiente e periculosidade da cr iatura, para se r usada na listagem geral. Na main, exiba o catálogo completo com descricaoCriatura, depois as criaturasperigosas filtradas e por fim o relatório de profundidade.
+
+
+✔ Melhor descrição (recomendada)
+Exercicio02 em Lisp - Sistema de catalogacao da fauna de Planet 4546B utilizando estruturas, listas, filtros e mapeamento para gerar relatorios de criaturas por periculosidade e ambiente
+✔ Versão mais formal (para relatório)
+Relatorio13 - Exercicio02 em Lisp: implementacao dos tipos Criatura e Periculosidade, utilizando operacoes de filtragem e transformacao de listas para classificacao e geracao de relatorios sobre a fauna de Planet 4546B
+✔ Versão curta (ideal para commit)
+Exercicio02 em Lisp - Fauna de Planet 4546B
+💡 Conceitos trabalhados neste exercício
+✔ Estruturas (defstruct)
+✔ Tipos enumerados (periculosidade)
+✔ Listas
+✔ Filtragem (remove-if-not ou equivalente)
+✔ Mapeamento (mapcar)
+✔ Manipulação de strings
+✔ Geração de relatórios
+
+O segundo exercicio é com base em qual jogo? 
+
+O Exercício 2 é claramente inspirado no jogo Subnautica.
+
+Os nomes e ambientes citados no enunciado vêm diretamente do jogo:
+
+Peeper → peixe pequeno e pacífico.
+Reaper Leviathan → uma das criaturas mais perigosas do jogo.
+Safe Shallows → região inicial e segura do mapa.
+Deep → representa regiões profundas do oceano do planeta 4546B.
+Planet 4546B → planeta onde se passa Subnautica.
+
+
+Mas você não é obrigado a usar exatamente essas criaturas para as duas últimas. O enunciado diz:
+
+"duas criaturas do ambiente Deep à sua escolha"
+
+Então você pode usar outras criaturas do jogo, por exemplo:
+
+Ghost Leviathan
+Sea Dragon Leviathan
+Crabsquid
+Warper
+River Prowler
+Lava Lizard
+
+O importante é respeitar os requisitos:
+
+pelo menos 4 criaturas;
+uma delas deve ser Peeper;
+uma delas deve ser Reaper Leviathan;
+duas devem ter ambiente "Deep".
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Exercício 3 — Loja Clandestina de Iwai
+Você gerencia uma loja secreta que vende armas, poções e artefatos mágicos. Cada item tem umpreço e uma força mágica, e os itens mais poderosos recebem um bônus especial na hora davenda.
+D
+efina o tipo TipoItem com os construtores Arma, Pocao e Artefato.
+Defina o tipo Item com os campos nome, tipo, preco e forcaMagica.
+Implemente adicionaImposto :: Double -> Double que aumenta o preço em 15%.
+Implemente bonusMaldicao :: Double -> Double usando guards — se forcaMagica for maior que80, multiplica por 1.5, caso contrário retorna o valor original.
+Implemente descricaoVenda :: Item -> String que recebe um item já processado e retorna umaString com o nome, o preço com imposto e a força mágica com bônus aplicado.
+Implemente processaVenda :: [Item] -> [String] que em sequência: filtra só os itens do tipo Armacom filter, aplica adicionaImposto no preço de cada um com map, aplica bonusMaldicao naforça mágica com map, e por fim usa descricaoVenda para formatar o resultado de cada arma.
+Na main, crie um catálogo com pelo menos cinco itens misturando os três tipos, chameprocessaVenda e exiba o resultado.
+
+✔ Melhor descrição (recomendada)
+Exercicio03 em Lisp - Sistema de vendas da Loja Clandestina de Iwai utilizando estruturas, filtros, mapeamento e regras de negocio para calcular impostos e bonus em itens magicos
+✔ Versão mais formal (para relatório)
+Relatorio13 - Exercicio03 em Lisp: implementacao dos tipos TipoItem e Item, utilizando operacoes de filtragem e transformacao de listas para processamento de vendas, aplicacao de impostos e bonus de forca magica
+✔ Versão curta (ideal para commit)
+Exercicio03 em Lisp - Loja Clandestina de Iwai
+💡 Conceitos trabalhados neste exercício
+✔ Estruturas (defstruct)
+✔ Tipos enumerados
+✔ Funções (defun)
+✔ Guards/condicionais
+✔ Filtragem de listas (filter)
+✔ Mapeamento (mapcar)
+✔ Processamento em etapas (pipeline)
+✔ Manipulação de strings
+
+
+Quais são os tipos de item da Loja Clandestina de Iwai, é baseada em um jogo ou anime?
+
+Sim. O exercício é inspirado no anime e mangá Persona 5 / Persona 5.
+
+Iwai é o dono da loja de armas chamada Untouchable, onde o protagonista compra equipamentos.
+
+No jogo, os tipos de itens vendidos incluem principalmente:
+
+Armas de fogo (pistolas, rifles, escopetas)
+Armas corpo a corpo (facas, espadas, bastões, machados)
+Proteções (armaduras e acessórios)
+
+Porém, o exercício adaptou o tema para algo mais "fantasia RPG", por isso definiu:
+
+Arma
+Pocao
+Artefato
+
+Esses tipos não correspondem exatamente aos itens do jogo. Foram escolhidos porque permitem trabalhar com:
+
+diferentes categorias;
+preço;
+força mágica;
+filtragem por tipo.
+
+Se quiser deixar os exemplos mais coerentes com Persona 5, você poderia usar itens como:
+
+Arma
+- Pistola Customizada
+- Rifle Tático
+
+Pocao
+- Remédio de Recuperação
+- Kit Médico
+
+Artefato
+- Anel da Vontade
+- Amuleto Rebelde
+
+Mas para a correção do exercício, qualquer nome funciona, desde que existam os três tipos exigidos pelo enunciado: Arma, Pocao e Artefato.
+
+Como o exercício é apenas inspirado na Loja Clandestina de Iwai de Persona 5, você pode usar itens reais do universo do jogo ou adaptações.
+
+Armas (existem no jogo)
+Punhal de Treinamento
+Faca de Combate
+Espada Longa
+Katana Negra
+Pistola M1911
+Revólver .357
+Rifle de Assalto
+Espingarda Tática
+Consumíveis (no jogo seriam itens de cura)
+Medicamento
+Kit de Primeiros Socorros
+Energético
+Bebida Revitalizante
+Adesivo de Cura
+Acessórios / Artefatos (equivalentes aos acessórios do jogo)
+Anel da Ira
+Anel da Vaidade
+Amuleto de Proteção
+Colar Sagrado
+Broche Arcano
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Exercício 4 — Viajantes de Teyvat O Viajante está catalogando os domínios e chefes de campo encontrados em Teyvat. Cada localtem um elemento associado, um nível de dificuldade e uma recompensa em mora. Nahida precisaajudar a calcular qual rota de farm vale mais a pena. D efina o tipo Elemento com os construtores Pyro, Hydro, Cryo, Electro e Anemo. Def ina o tipo Local com os campos no me, elem ento, dificuldade e recompensa. Implemente bonusElemental :: Local -> Double usando guards — se o elemento for Pyro ouElectro aplica um bônus de 20% na recompensa, se for Cryo aplica 10%, e nos demais casosretorna a recompensa original. Implemente valeAPena :: Local -> Bool que retorna True se a recompensa com bônus for maiorque 500 e a dificuldade for menor ou igual a 3. Implemente rotaDeFarm :: [Local] -> [String] que usa filter com valeAPena para selecionar oslocais recomendados e map para formatar cada um como "[NOME] — Recompensa: [VALOR]". Na main, crie um catálogo com pelo menos cinco locais com elementos e dificuldadesvariados, exiba a lista completa com bonusElemental de cada um e em seguida exiba apenas arota de farm recomendada.
+
+✔ Melhor descrição (recomendada)
+Exercicio04 em Lisp - Sistema de catalogacao de locais em Teyvat utilizando tipos enumerados, filtros, mapeamento e regras de bonus elemental para definir rotas de farm eficientes
+✔ Versão mais formal (para relatório)
+Relatorio13 - Exercicio04 em Lisp: implementacao dos tipos Elemento e Local, utilizando funcoes de filtragem e transformacao de listas para calculo de recompensas com bonus elemental e selecao de rotas de farm
+✔ Versão curta (ideal para commit)
+Exercicio04 em Lisp - Viajantes de Teyvat
+💡 Conceitos trabalhados neste exercício
+✔ Tipos enumerados (Elemento)
+✔ Estruturas (defstruct)
+✔ Funções (defun)
+✔ Guards/condicionais (cond)
+✔ Filtragem de listas (filter)
+✔ Mapeamento (mapcar)
+✔ Regras de negócio
+✔ Manipulação de strings
+
+Este exercício é inspirado em Genshin Impact. Os elementos citados no enunciado são os elementos do jogo:
+
+Pyro (Fogo)
+Hydro (Água)
+Cryo (Gelo)
+Electro (Eletricidade)
+Anemo (Vento)
+
+Se você quiser deixar o exercício mais fiel a Genshin Impact, pode usar locais e chefes conhecidos do jogo.
+
+Opção 1 — Chefes de Campo
+Pyro Regisvine      | Pyro    | dificuldade 3 | recompensa 450
+Electro Hypostasis  | Electro | dificuldade 2 | recompensa 480
+Cryo Regisvine      | Cryo    | dificuldade 3 | recompensa 470
+Oceanid             | Hydro   | dificuldade 4 | recompensa 550
+Stormterror         | Anemo   | dificuldade 2 | recompensa 520
+
+Opção 2 — Domínios
+Palace in a Pool      | Hydro   | dificuldade 2 | recompensa 400
+Hidden Palace Formula | Pyro    | dificuldade 3 | recompensa 450
+Peak of Vindagnyr     | Cryo    | dificuldade 4 | recompensa 520
+Midsummer Courtyard   | Electro | dificuldade 2 | recompensa 470
+Valley of Remembrance | Anemo   | dificuldade 3 | recompensa 500
+
+Opção 3 — Misturando domínios e chefes
+Pyro Regisvine        | Pyro    | dificuldade 3 | recompensa 450
+Oceanid               | Hydro   | dificuldade 4 | recompensa 550
+Cryo Regisvine        | Cryo    | dificuldade 3 | recompensa 470
+Midsummer Courtyard   | Electro | dificuldade 2 | recompensa 480
+Valley of Remembrance | Anemo   | dificuldade 2 | recompensa 500
+
+------------------------------------------------------------------------------------------------------
+OBs: As informações recebidas foram claras, indicando um resumo dos exercícios e conceitos utilizados. Além de ajudar na descrição, também ajudou com exemplos de cenários, itens e personagens. 
