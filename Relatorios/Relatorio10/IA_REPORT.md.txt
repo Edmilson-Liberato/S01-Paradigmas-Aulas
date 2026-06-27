@@ -1,0 +1,946 @@
+Melhor descrição para colocar no commit
+
+EXERCÍCIO 1
+Cenário:
+Em uma batalha Pokémon, cada criatura tem seus próprios atributos e um estiloúnico de atacar. A vida de um Pokémon não pode ser alterada diretamente de fora só opróprio combate pode mudá-la.
+Tarefa:
+Cl
+asse base: Crie a classe Pokemon com os atributos nome e tipo, e um atributointerno _vida que só pode ser lido de fora via getter. Implemente o método atacar comum comportamento genérico.
+Herança e Sobres
+crit
+a: C
+rie as classes Pikachu e Charizard herdando de Pokemon.Cada uma deve sobrescrever o método atac
+ar com seu próprio comportamento.
+Encapsulamento: Implemente o método receber_dano na classe base para reduzir avida de forma controlada. A vida não pode ficar negativa.
+Main: Instancie um Pikachu e um Charizard, faça cada um atacar e em seguida apliquedano a um deles via receber_dano. Exiba a vida restante usando o getter.
+
+✔ Melhor descrição (recomendada)
+Exercicio01 em Python - Implementacao de encapsulamento, heranca e polimorfismo com a classe base Pokemon e as classes Pikachu e Charizard, incluindo controle de vida por metodo protegido
+✔ Versão mais formal (para relatório)
+Relatorio09 - Exercicio01 em Python: uso de encapsulamento com atributo privado de vida, heranca entre Pokemon, Pikachu e Charizard, e sobrescrita do metodo atacar para demonstrar polimorfismo
+✔ Versão curta (ideal para commit)
+Exercicio01 em Python - encapsulamento e heranca (Pokemon)
+💡 Por que essa descrição está correta?
+
+Ela cobre todos os conceitos do exercício:
+
+✔ encapsulamento → _vida protegido e acessado por getter
+✔ herança → Pikachu e Charizard
+✔ polimorfismo → sobrescrita do método atacar
+✔ controle de estado → receber_dano()
+✔ proteção da vida → sem valores negativos
+🔥 Dica importante (nível prova)
+✔ Getter da vida
+@property
+def vida(self):
+    return self._vida
+
+👉 permite leitura sem alterar diretamente
+
+✔ Controle do dano
+self._vida -= dano
+if self._vida < 0:
+    self._vida = 0
+
+👉 garante que a vida nunca fique negativa
+
+✔ Polimorfismo
+pikachu.atacar()
+charizard.atacar()
+
+👉 mesma função, comportamentos diferentes
+
+🧠 Resumo rápido
+Encapsulamento = proteger atributos
+Heranca = reutilizar estrutura
+Polimorfismo = ataques diferentes
+Getter = leitura controlada
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+EXERCÍCIO 2 Cenário : Um time de Valorant é formado por Agentes, cada um com uma função tática euma habilidade característica do seu papel. Todo Agente precisa cumprir o contrato decombate para entrar na partida. Tarefa : Interface (simulaçã o de interface): Crie a classe base Habilidade com o método usar quelança um erro caso não seja sobrescrito. Crie as classes de habilidades dos agentes:Smoke, Flash, Dash e Armadilha herdando de Habilidade, cada uma sobrescrevendo usarcom seu próprio comportamento. Composição : Crie a classe Agente com os atributos nome e funcao (ex: "Controlador","Iniciador", "Duelista", "Sentinela"). No constructor, receba um objeto do tipo Habilidade earmazene como atributo interno do Agente. Implemente o método entrarEmCombateque exibe o no me, a função e chama usar da sua habilidade. Agregação : Crie a classe Time que recebe um array de Agentes já criados. Implemente ométodo iniciarPartida que percorre todos os agentes com forEach e chamaentrarEmCombate de cada um. Implemente o método listarControladores no Time que usa filter e instanceof pararetornar apenas os Agentes cuja habilidade é do tipo Smoke. Main : Instancie pelo menos um Agente de cada função — sugestões: Omen com Smoke,Skye com Flash, Jett com Dash e Cypher com Armadilha. Agrupe-os em um Time, chameiniciarPartida e em seguida exiba apenas os controladores encontr ad os pelolistarControladores.
+
+
+✔ Melhor descrição (recomendada)
+Exercicio02 em Python - Implementacao de interface de habilidades com composicao entre Agente e Habilidade, alem de agregacao na classe Time utilizando polimorfismo e filtros de objetos
+✔ Versão mais formal (para relatório)
+Relatorio09 - Exercicio02 em Python: uso de interface simulada com classe Habilidade e subclasses especializadas, composicao na classe Agente e agregacao de objetos na classe Time com operacoes de iteracao e filtragem
+✔ Versão curta (ideal para commit)
+Exercicio02 em Python - interface, composicao e agregacao (Valorant)
+💡 Por que essa descrição está correta?
+
+Ela cobre todos os conceitos principais do exercício:
+
+✔ interface simulada → Habilidade com erro se não sobrescrever
+✔ herança → Smoke, Flash, Dash, Armadilha
+✔ polimorfismo → cada habilidade executa um comportamento diferente
+✔ composição → Agente possui uma Habilidade
+✔ agregação → Time recebe lista de agentes
+✔ filter + isinstance → filtragem dos controladores
+🔥 Dica importante (nível prova)
+✔ Interface simulada
+def usar(self):
+    raise NotImplementedError("Metodo deve ser sobrescrito")
+
+👉 força as classes filhas a implementarem
+
+✔ Composição
+self.habilidade = habilidade
+
+👉 o Agente possui uma habilidade
+
+✔ Agregação
+self.agentes = agentes
+
+👉 o Time recebe agentes já criados
+
+✔ Filtragem com filter e isinstance
+filter(lambda a: isinstance(a.habilidade, Smoke), self.agentes)
+
+👉 retorna apenas controladores
+
+🧠 Resumo rápido
+Interface = obriga implementacao
+Composicao = Agente possui Habilidade
+Agregacao = Time possui lista de agentes
+Polimorfismo = habilidades diferentes
+---------------------------------------------------------------------------------------------------------
+✔ Melhor descrição (recomendada)
+Exercicio03 em Python - Implementacao de composicao com Diario e Criatura, e agregacao com CabanaMisterio e Personagem, utilizando listas para gerenciamento e exibicao de objetos
+✔ Versão mais formal (para relatório)
+Relatorio09 - Exercicio03 em Python: uso de composicao entre Diario e Criatura, agregacao entre CabanaMisterio e Personagem, e manipulacao de listas para registro e exibicao de dados
+✔ Versão curta (ideal para commit)
+Exercicio03 em Python - composicao e agregacao (Gravity Falls)
+💡 Por que essa descrição está correta?
+
+Ela cobre exatamente os conceitos do exercício:
+
+✔ composição → Diario possui lista interna de Criatura
+✔ agregação → CabanaMisterio recebe Personagem já criado
+✔ uso de listas (array/list)
+✔ registro e exibição de objetos
+✔ forEach/loop para percorrer elementos
+🔥 Dica importante (nível prova)
+✔ Composição
+self.criaturas = []
+
+👉 o Diario gerencia internamente as criaturas
+
+✔ Método de registro
+def registrarCriatura(self, criatura):
+    self.criaturas.append(criatura)
+✔ Agregação
+self.personagens = personagens
+
+👉 personagens existem fora da CabanaMisterio
+
+✔ Percorrendo a lista
+for personagem in self.personagens:
+    print(personagem.nome)
+🧠 Resumo rápido
+Composicao = Diario controla Criaturas
+Agregacao = Cabana recebe Personagens externos
+Lista = armazenamento de objetos
+Loop = exibicao dos dados
+
+EXERCÍCIO 4 Cenário : A Associação Hunter recebeu um alerta: a Trupe Fantasma foi avistada emYorknew City. Gon, Killua e Kurapika precisam se organizar para enfrentar as Aranhas.Cada Hunter tem seu próprio estilo de luta e cabe a você modelar esse confronto. Tarefa : Classe base: Crie a classe Hunter com o atributo nome e um método lutar comcomportamento genérico. Herança e Sobrescrita: C rie as classes Gon, Killua e Kurapika herdando de Hunter.Cada uma deve sobrescrever o método lutar com seu próprio estilo de combate —sugestões: Gon com Jajanken, Killua com Godspeed e Kurapika com suascorrentes. Agregação: Crie a classe TrupeFantasma com o atributo nome e um array demembros passado no co nstruct or. Implemente o método revelarMembros quepercorre o array com forEach e exibe cada membro. Main: Instancie os três Hunters e faça cada um chamar lutar. Monte umaTrupeFantasma com dois ou três membros co mo Chrollo, Hisok a e Feitan, echame revelarMembros.
+
+✔ Melhor descrição (recomendada)
+Exercicio04 em Python - Implementacao de heranca e polimorfismo com a classe Hunter e as classes Gon, Killua e Kurapika, alem de agregacao na classe TrupeFantasma para gerenciamento de membros
+✔ Versão mais formal (para relatório)
+Relatorio09 - Exercicio04 em Python: uso de heranca e sobrescrita de metodo entre Hunter e suas subclasses, juntamente com agregacao de membros na classe TrupeFantasma
+✔ Versão curta (ideal para commit)
+Exercicio04 em Python - heranca e agregacao (Hunter x Hunter)
+💡 Por que essa descrição está correta?
+
+Ela cobre os principais conceitos do exercício:
+
+✔ classe base (Hunter)
+✔ herança (Gon, Killua, Kurapika)
+✔ polimorfismo (lutar)
+✔ sobrescrita de método
+✔ agregação (TrupeFantasma)
+✔ uso de listas/arrays
+🔥 Dica importante (nível prova)
+✔ Polimorfismo
+gon.lutar()
+killua.lutar()
+kurapika.lutar()
+
+👉 mesma função, comportamentos diferentes
+
+✔ Sobrescrita
+
+Cada classe deve ter:
+
+def lutar(self):
+
+👉 com mensagens diferentes
+
+✔ Agregação
+self.membros = membros
+
+👉 os membros já existem antes da TrupeFantasma
+
+✔ Percorrendo membros
+for membro in self.membros:
+    print(membro)
+🧠 Resumo rápido
+Heranca = reutilizacao de estrutura
+Polimorfismo = estilos de luta diferentes
+Agregacao = lista externa de membros
+
+-----------------------------------------------------------------------------------------------------
+Verificar possiveis erros nos codigos abaixo e se estão de acordo com a proposta dos exercicios
+
+//CLASSE BASE
+class Pokemon {
+    //ENCAPSULAMENTO
+    #vida;
+
+    constructor(nome, tipo, vida) {
+        this.nome = nome;
+        this.tipo = tipo;
+        this.#vida = vida;
+    }
+
+    //GETTER
+    get vida() {
+        return this.#vida;
+    }
+
+    //MÉTODO 
+    atacar() {
+        return `${this.nome} realizou um ataque básico!`;
+    }
+
+    //ENCAPSULAMENTO
+    receber_dano(dano) {
+        this.#vida -= dano;
+
+        
+        if (this.#vida < 0) {
+            this.#vida = 0;
+        }
+
+        console.log(`${this.nome} recebeu ${dano} de dano!`);
+    }
+}
+
+
+//HERANÇA
+
+class Pikachu extends Pokemon {
+    constructor(nome) {
+        
+        super(nome, 'Elétrico', 100);
+    }
+
+   
+    atacar() {
+        return `${this.nome} usou Choque do Trovão! `;
+    }
+}
+
+class Charizard extends Pokemon {
+    constructor(nome) {
+        super(nome, 'Fogo', 150);
+    }
+
+   
+    atacar() {
+        return `${this.nome} usou Lança-Chamas! `;
+    }
+}
+
+//MAIN 
+//criação dos pokémons
+const pikachu = new Pikachu('Pikachu');
+const charizard = new Charizard('Charizard');
+
+//POLIMORFISMO
+
+console.log(pikachu.atacar());
+console.log(charizard.atacar());
+
+//Aplicando dano
+charizard.receber_dano(40);
+
+//Asando getter para acessar a vida
+console.log(`Vida restante de ${charizard.nome}: ${charizard.vida}`);
+
+
+Seu código está correto e atende à proposta do Exercício 1. Os conceitos pedidos foram implementados adequadamente:
+
+✔ Classe base Pokemon
+Possui os atributos nome e tipo.
+Possui o atributo privado #vida.
+Possui getter vida.
+Possui método genérico atacar().
+✔ Herança e Sobrescrita
+Pikachu herda de Pokemon.
+Charizard herda de Pokemon.
+Ambos sobrescrevem atacar().
+✔ Encapsulamento
+A vida só pode ser acessada pelo getter.
+A alteração da vida ocorre apenas por receber_dano().
+A vida nunca fica negativa.
+✔ Main
+Instancia Pikachu e Charizard.
+Ambos atacam.
+Um deles recebe dano.
+A vida restante é exibida usando o getter.
+Pequenos ajustes recomendados
+1. Comentário com erro de digitação
+
+Você escreveu:
+
+//Asando getter para acessar a vida
+
+O correto seria:
+
+//Usando getter para acessar a vida
+2. Validar dano negativo (opcional)
+
+Atualmente alguém poderia fazer:
+
+charizard.receber_dano(-50);
+
+e a vida aumentaria.
+
+Uma versão mais segura seria:
+
+receber_dano(dano) {
+    if (dano < 0) {
+        return;
+    }
+
+    this.#vida -= dano;
+
+    if (this.#vida < 0) {
+        this.#vida = 0;
+    }
+
+    console.log(`${this.nome} recebeu ${dano} de dano!`);
+}
+
+Não é exigido pelo exercício, mas melhora a robustez do código.
+
+3. Demonstrar melhor o encapsulamento (opcional)
+
+Se o professor quiser ver claramente o uso do getter, você pode mostrar:
+
+console.log(`Vida inicial de ${charizard.nome}: ${charizard.vida}`);
+
+charizard.receber_dano(40);
+
+console.log(`Vida restante de ${charizard.nome}: ${charizard.vida}`);
+Saída esperada
+Pikachu usou Choque do Trovão!
+Charizard usou Lança-Chamas!
+Charizard recebeu 40 de dano!
+Vida restante de Charizard: 110
+
+------------------------------------------------------------------------
+// CLASSES BASE E INTERFACES 
+
+// Classe base que funciona como contrato/interface
+class Habilidade {
+    constructor(nome) {
+        this.nome = nome;
+    }
+
+    //Método 
+    usar() {
+        throw new Error(`A habilidade ${this.nome} deve implementar o método usar()`);
+    }
+}
+
+//HERANÇA E SOBRESCRITA
+class Smoke extends Habilidade {
+    constructor() {
+        super('Smoke');
+    }
+
+    usar() {
+        return 'Lançando fumaça para bloquear a visão dos inimigos!';
+    }
+}
+
+class Flash extends Habilidade {
+    constructor() {
+        super('Flash');
+    }
+
+    usar() {
+        return 'Utilizando flash para cegar os adversários!';
+    }
+}
+
+class Dash extends Habilidade {
+    constructor() {
+        super('Dash');
+    }
+
+    usar() {
+        return 'Avançando rapidamente pelo mapa!';
+    }
+}
+
+class Armadilha extends Habilidade {
+    constructor() {
+        super('Armadilha');
+    }
+
+    usar() {
+        return 'Posicionando armadilhas para proteger a área!';
+    }
+}
+
+
+//COMPOSIÇÃO
+class Agente {
+    constructor(nome, funcao, habilidade) {
+        this.nome = nome;
+        this.funcao = funcao;
+
+        this.habilidade = habilidade;
+    }
+
+    entrarEmCombate() {
+        console.log(
+            `${this.nome} (${this.funcao}) entrou em combate! | ${this.habilidade.usar()}`
+        );
+    }
+}
+
+
+//AGREGAÇÃO E COLLECTIONS
+class Time {
+    constructor(nome, agentes = []) {
+        this.nome = nome;
+        this.agentes = agentes;
+    }
+
+    iniciarPartida() {
+        console.log(`\n${this.nome} INICIOU A PARTIDA!`);
+
+        //Percorre todos os agentes
+        this.agentes.forEach(agente => {
+            agente.entrarEmCombate();
+        });
+    }
+
+    listarControladores() {
+        //Retorna apenas agentes com habilidade Smoke
+        return this.agentes.filter(
+            agente => agente.habilidade instanceof Smoke
+        );
+    }
+}
+
+
+//MAIN
+
+//Criação das habilidades
+const smoke = new Smoke();
+const flash = new Flash();
+const dash = new Dash();
+const armadilha = new Armadilha();
+
+//Criação dos agentes
+const omen = new Agente('Omen', 'Controlador', smoke);
+const skye = new Agente('Skye', 'Iniciador', flash);
+const jett = new Agente('Jett', 'Duelista', dash);
+const cypher = new Agente('Cypher', 'Sentinela', armadilha);
+
+//Agregação no time
+const valorantTeam = new Time('Valorant Champions', [
+    omen,
+    skye,
+    jett,
+    cypher
+]);
+
+//Iniciando partida
+valorantTeam.iniciarPartida();
+
+//listando controladores
+console.log('\nControladores Encontrados:');
+
+valorantTeam.listarControladores().forEach(controlador => {
+    console.log(`- ${controlador.nome}`);
+});
+
+Seu código está correto e atende completamente ao que foi pedido no Exercício 2. Vamos verificar item por item.
+
+✔ Interface (simulação de interface)
+
+O enunciado pede:
+
+Crie a classe base Habilidade com o método usar que lança um erro caso não seja sobrescrito.
+
+Você fez corretamente:
+
+class Habilidade {
+    constructor(nome) {
+        this.nome = nome;
+    }
+
+    usar() {
+        throw new Error(`A habilidade ${this.nome} deve implementar o método usar()`);
+    }
+}
+
+✔ Atende ao requisito.
+
+✔ Herança e Sobrescrita
+
+O enunciado pede:
+
+Smoke
+Flash
+Dash
+Armadilha
+
+Todos herdando de Habilidade e sobrescrevendo usar().
+
+Exemplo:
+
+class Smoke extends Habilidade {
+    constructor() {
+        super('Smoke');
+    }
+
+    usar() {
+        return 'Lançando fumaça para bloquear a visão dos inimigos!';
+    }
+}
+
+✔ Todos foram implementados corretamente.
+
+✔ Composição
+
+O enunciado pede:
+
+Crie a classe Agente com os atributos nome e funcao. No constructor receba um objeto do tipo Habilidade e armazene como atributo interno do Agente.
+
+Você fez:
+
+class Agente {
+    constructor(nome, funcao, habilidade) {
+        this.nome = nome;
+        this.funcao = funcao;
+        this.habilidade = habilidade;
+    }
+}
+
+✔ Correto.
+
+O Agente possui uma Habilidade.
+
+✔ Método entrarEmCombate()
+
+O enunciado pede:
+
+exibe o nome, a função e chama usar da habilidade.
+
+Você fez:
+
+entrarEmCombate() {
+    console.log(
+        `${this.nome} (${this.funcao}) entrou em combate! | ${this.habilidade.usar()}`
+    );
+}
+
+✔ Correto.
+
+✔ Agregação
+
+O enunciado pede:
+
+Crie a classe Time que recebe um array de Agentes já criados.
+
+Você fez:
+
+class Time {
+    constructor(nome, agentes = []) {
+        this.nome = nome;
+        this.agentes = agentes;
+    }
+}
+
+✔ Correto.
+
+Os agentes já existiam antes do Time.
+
+✔ iniciarPartida()
+
+O enunciado pede:
+
+percorre todos os agentes com forEach.
+
+Você fez:
+
+this.agentes.forEach(agente => {
+    agente.entrarEmCombate();
+});
+
+✔ Exatamente como solicitado.
+
+✔ listarControladores()
+
+O enunciado pede:
+
+usa filter e instanceof para retornar apenas os Agentes cuja habilidade é do tipo Smoke.
+
+Você fez:
+
+listarControladores() {
+    return this.agentes.filter(
+        agente => agente.habilidade instanceof Smoke
+    );
+}
+
+✔ Exatamente como o exercício pede.
+
+✔ Main
+
+O enunciado sugere:
+
+Omen → Smoke
+Skye → Flash
+Jett → Dash
+Cypher → Armadilha
+
+Você fez exatamente isso:
+
+const omen = new Agente('Omen', 'Controlador', smoke);
+const skye = new Agente('Skye', 'Iniciador', flash);
+const jett = new Agente('Jett', 'Duelista', dash);
+const cypher = new Agente('Cypher', 'Sentinela', armadilha);
+
+✔ Correto.
+
+Pequena melhoria (opcional)
+
+Você poderia garantir que a habilidade recebida realmente herda de Habilidade:
+
+constructor(nome, funcao, habilidade) {
+    this.nome = nome;
+    this.funcao = funcao;
+
+    if (!(habilidade instanceof Habilidade)) {
+        throw new Error("Habilidade inválida.");
+    }
+
+    this.habilidade = habilidade;
+}
+
+Mas isso não é exigido pelo exercício.
+
+Saída esperada
+Valorant Champions INICIOU A PARTIDA!
+
+Omen (Controlador) entrou em combate! | Lançando fumaça para bloquear a visão dos inimigos!
+Skye (Iniciador) entrou em combate! | Utilizando flash para cegar os adversários!
+Jett (Duelista) entrou em combate! | Avançando rapidamente pelo mapa!
+Cypher (Sentinela) entrou em combate! | Posicionando armadilhas para proteger a área!
+
+Controladores Encontrados:
+- Omen
+
+-----------------------------------------------------------------------------------------------------
+// COMPOSIÇÃO
+//Classe 
+class Criatura {
+    constructor(nome, perigo) {
+        this.nome = nome;
+        this.perigo = perigo;
+    }
+}
+
+class Diario {
+    constructor() {
+        this.criaturas = [];
+    }
+
+    registrarCriatura(criatura) {
+        this.criaturas.push(criatura);
+
+        console.log(
+            `[REGISTRO] Criatura ${criatura.nome} adicionada ao Diário 3.`
+        );
+    }
+
+    listarCriaturas() {
+        console.log('\nCRIATURAS REGISTRADAS');
+
+        //forEach percorre todas as criaturas
+        this.criaturas.forEach(criatura => {
+            console.log(
+                `- ${criatura.nome} | Nível de perigo: ${criatura.perigo}`
+            );
+        });
+    }
+}
+
+
+//AGREGAÇÃO
+
+class Personagem {
+    constructor(nome) {
+        this.nome = nome;
+    }
+}
+
+class CabanaMisterio {
+    constructor(personagens = []) {
+        this.personagens = personagens;
+    }
+
+    listarFuncionarios() {
+        console.log('\nFUNCIONÁRIOS DA CABANA DO MISTÉRIO');
+
+        //Percorre todos os personagens
+        this.personagens.forEach(personagem => {
+            console.log(`- ${personagem.nome}`);
+        });
+    }
+}
+
+
+//MAIN
+
+//Criação do diário
+const diario3 = new Diario();
+
+//Criação das criaturas
+const gnomos = new Criatura('Gnomos', 'Médio');
+const shapeshifter = new Criatura('Shapeshifter', 'Alto');
+const billCipher = new Criatura('Bill Cipher', 'Extremo');
+
+//Registrando criaturas no diário
+diario3.registrarCriatura(gnomos);
+diario3.registrarCriatura(shapeshifter);
+diario3.registrarCriatura(billCipher);
+
+//Exibindo criaturas registradas
+diario3.listarCriaturas();
+
+
+//Criação dos personagens
+const stan = new Personagem('Grunkle Stan');
+const mabel = new Personagem('Mabel Pines');
+const soos = new Personagem('Soos Ramirez');
+
+//Agregação dos personagens na cabana
+const cabana = new CabanaMisterio([
+    stan,
+    mabel,
+    soos
+]);
+
+//listando funcionários
+cabana.listarFuncionarios();
+
+
+Seu código está correto e atende à proposta do Exercício 3. Não encontrei erros de sintaxe nem problemas de lógica. Vamos conferir item por item.
+
+✔ Composição
+
+O enunciado pede:
+
+Crie a classe Criatura com os atributos nome e perigo.
+
+Você fez:
+
+class Criatura {
+    constructor(nome, perigo) {
+        this.nome = nome;
+        this.perigo = perigo;
+    }
+}
+
+✔ Correto.
+
+O enunciado pede:
+
+Crie a classe Diario que no constructor instancia internamente um array de criaturas.
+
+Você fez:
+
+class Diario {
+    constructor() {
+        this.criaturas = [];
+    }
+}
+
+✔ Correto.
+
+O array nasce junto com o Diário, caracterizando composição.
+
+✔ registrarCriatura()
+
+O enunciado pede:
+
+recebe uma Criatura e a adiciona ao array.
+
+Você fez:
+
+registrarCriatura(criatura) {
+    this.criaturas.push(criatura);
+}
+
+✔ Correto.
+
+Além disso, você adicionou uma mensagem de confirmação, o que é um bônus.
+
+✔ listarCriaturas()
+
+O enunciado pede:
+
+exibe todas as criaturas registradas.
+
+Você fez:
+
+listarCriaturas() {
+    this.criaturas.forEach(criatura => {
+        console.log(
+            `- ${criatura.nome} | Nível de perigo: ${criatura.perigo}`
+        );
+    });
+}
+
+✔ Correto.
+
+✔ Agregação
+
+O enunciado pede:
+
+Crie a classe Personagem com o atributo nome.
+
+Você fez:
+
+class Personagem {
+    constructor(nome) {
+        this.nome = nome;
+    }
+}
+
+✔ Correto.
+
+O enunciado pede:
+
+Crie a classe CabanaMisterio que recebe um array de Personagens já criados no constructor.
+
+Você fez:
+
+class CabanaMisterio {
+    constructor(personagens = []) {
+        this.personagens = personagens;
+    }
+}
+
+✔ Correto.
+
+Os personagens já existem antes da Cabana ser criada, portanto é agregação.
+
+✔ listarFuncionarios()
+
+O enunciado pede:
+
+percorre o array com forEach e exibe cada personagem.
+
+Você fez:
+
+this.personagens.forEach(personagem => {
+    console.log(`- ${personagem.nome}`);
+});
+
+✔ Exatamente como solicitado.
+
+✔ Main
+
+O enunciado pede:
+
+Instancie um Diário.
+
+Você fez:
+
+const diario3 = new Diario();
+
+✔ Correto.
+
+Crie duas ou três criaturas e registre-as.
+
+Você fez:
+
+const gnomos = new Criatura('Gnomos', 'Médio');
+const shapeshifter = new Criatura('Shapeshifter', 'Alto');
+const billCipher = new Criatura('Bill Cipher', 'Extremo');
+
+✔ Correto.
+
+Instancie personagens como Grunkle Stan, Mabel e Soos.
+
+Você fez:
+
+const stan = new Personagem('Grunkle Stan');
+const mabel = new Personagem('Mabel Pines');
+const soos = new Personagem('Soos Ramirez');
+
+✔ Correto.
+
+Agrupe-os em uma CabanaMisterio e chame listarFuncionarios().
+
+Você fez:
+
+const cabana = new CabanaMisterio([
+    stan,
+    mabel,
+    soos
+]);
+
+cabana.listarFuncionarios();
+
+✔ Correto.
+
+Pequenas melhorias (opcionais)
+Validar se o objeto recebido é realmente uma Criatura
+registrarCriatura(criatura) {
+    if (!(criatura instanceof Criatura)) {
+        throw new Error("Objeto inválido.");
+    }
+
+    this.criaturas.push(criatura);
+}
+
+Não é exigido pelo exercício.
+
+Destacar melhor os títulos
+
+Você poderia escrever:
+
+console.log('\n--- CRIATURAS REGISTRADAS ---');
+
+e
+
+console.log('\n--- FUNCIONÁRIOS DA CABANA DO MISTÉRIO ---');
+
+Mas isso é apenas estética.
+
+Saída esperada
+[REGISTRO] Criatura Gnomos adicionada ao Diário 3.
+[REGISTRO] Criatura Shapeshifter adicionada ao Diário 3.
+[REGISTRO] Criatura Bill Cipher adicionada ao Diário 3.
+
+CRIATURAS REGISTRADAS
+- Gnomos | Nível de perigo: Médio
+- Shapeshifter | Nível de perigo: Alto
+- Bill Cipher | Nível de perigo: Extremo
+
+FUNCIONÁRIOS DA CABANA DO MISTÉRIO
+- Grunkle Stan
+- Mabel Pines
+- Soos Ramirez
+----------------------------------------------------------------------------------------------
+OBs: As informações recebidas foram claras, indicando um resumo dos exercícios e conceitos utilizados. Além de ajudar na descrição, também ajudou na separação do código e com exemplos ajudando na resoluções dos exercícios. Também me ajudou a verificar se os códigos estão atendendo o conteúdo dos exercícios. 
