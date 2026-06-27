@@ -1,0 +1,401 @@
+Verificar se o meu banco no prolog e os codigos estão de acordo com os exercicicos abaixo:
+Codigo 1
+come(sucuri, agua).
+come(sucuri, terra).
+
+animal(sucuri).
+
+alimento(terra).
+alimento(agua).
+
+nicho(sucuri, pantano).
+
+especie_chave(Animal) :-
+    (come(Animal, agua) ; come(Animal, terra)),
+    (nicho(Animal, rios) ;
+     nicho(Animal, pantano) ;
+     nicho(Animal, profundezas)).
+
+Codigo 2
+come(sucuri, agua).
+come(sucuri, terra).
+
+animal(sucuri).
+
+alimento(terra).
+alimento(agua).
+
+nicho(sucuri, pantano).
+nicho(sucuri, rios).
+
+local_comum(sucuri, margens).
+
+
+especie_chave(Animal) :-
+    (come(Animal, agua) ; come(Animal, terra)),
+    (nicho(Animal, rios) ;
+     nicho(Animal, pantano) ;
+     nicho(Animal, profundezas)).
+
+
+especie_dominante(Animal) :-
+    nicho(Animal, X),
+    nicho(Animal, Y),
+    X \= Y,
+    local_comum(Animal, margens).
+
+Codigo 3
+come(sucuri, agua).
+come(sucuri, terra).
+come(girassol, sol).
+come(girassol, terra).
+come(cacto, sol).
+come(cacto, terra).
+come(suculenta, sol).
+come(suculenta, terra).
+
+animal(sucuri).
+
+alimento(terra).
+alimento(agua).
+
+nicho(sucuri, pantano).
+nicho(sucuri, rios).
+
+local_comum(sucuri, margens).
+
+
+especie_chave(Animal) :-
+    (come(Animal, agua) ; come(Animal, terra)),
+    (nicho(Animal, rios) ;
+     nicho(Animal, pantano) ;
+     nicho(Animal, profundezas)).
+
+especie_dominante(Animal) :-
+    nicho(Animal, X),
+    nicho(Animal, Y),
+    X \= Y,
+    local_comum(Animal, margens).
+
+competidores_diretos(A, B) :-
+    come(A, sol),
+    come(B, sol),
+    come(A, terra),
+    come(B, terra),
+    A \= B.
+Codigo 4
+come(sucuri, agua).
+come(sucuri, terra).
+come(girassol, sol).
+come(girassol, terra).
+come(cacto, sol).
+come(cacto, terra).
+come(suculenta, sol).
+come(suculenta, terra).
+
+animal(sucuri).
+
+alimento(terra).
+alimento(agua).
+
+nicho(sucuri, pantano).
+nicho(sucuri, rios).
+
+local_comum(sucuri, margens).
+
+
+especie_chave(Animal) :-
+    (come(Animal, agua) ; come(Animal, terra)),
+    (nicho(Animal, rios) ;
+     nicho(Animal, pantano) ;
+     nicho(Animal, profundezas)).
+
+
+especie_dominante(Animal) :-
+    nicho(Animal, X),
+    nicho(Animal, Y),
+    X \= Y,
+    local_comum(Animal, margens).
+
+
+competidores_diretos(A, B) :-
+    come(A, sol),
+    come(B, sol),
+    come(A, terra),
+    come(B, terra),
+    A \= B.
+
+fluxo_energia(sol, A) :-
+    come(A, sol).
+
+fluxo_energia(A, D) :-
+    come(A, D),
+    D \= sol.
+
+fluxo_energia(A, D) :-
+    come(A, Z),
+    Z \= sol,
+    fluxo_energia(Z, D).
+
+Exercicio1
+1. Sabendo que a Sucuri é alimentada pela Água e
+pela Terra, inclua esses fatos.
+2. Crie uma regra especie_chave(Animal) que seja
+verdadeira SE o Animal se alimentar da Água OU
+da Terra E tiver um nicho associado a 'rios',
+'pântano' ou 'profundezas'.
+3. Query: Quem são as espécies chaves.
+
+Exercício 2
+1. Crie uma regra especie_dominante(Animal) que
+seja verdadeira SE o Animal tiver pelo menos dois
+nicho (domínios) associados no banco de dados E
+seu local_comum for as 'margens'.
+2. Query: Quem é(são) a(s) espécie(s) dominante(s)?
+(Dica: Você precisará testar se nicho(Animal, X) e
+nicho(Animal, Y) com X \= Y).
+Exercicio3
+1. Crie a regra competidores_diretos(A, B) que seja
+verdadeira SE A e B se alimentarem do Sol E
+também se alimentarem da Terra.
+2. Query: Quais plantas ou algas são competidoras
+diretas?
+Exercício 4
+1. Crie a regra fluxo_energia(A, D) que define a
+cadeia alimentar estendida.
+a. Caso Base: fluxo_energia(A, D) é verdadeiro SE
+A alimenta D.
+b. Passo Recursivo: fluxo_energia(A, D) é
+verdadeiro SE A alimenta um intermediário (Z)
+E esse intermediário (Z) tem um fluxo_energia
+para D.
+2. Query: Para quem o 'Sol' envia energia (direta ou
+indiretamente)?
+
+
+De forma geral, os códigos 1, 2 e 3 estão de acordo com os exercícios. O código 4 precisa de um ajuste na regra fluxo_energia/2, pois ela não corresponde exatamente ao que o enunciado pede.
+
+Exercício 1
+Enunciado
+Sucuri é alimentada por Água e Terra.
+Criar especie_chave(Animal).
+Seu código
+come(sucuri, agua).
+come(sucuri, terra).
+
+animal(sucuri).
+
+alimento(terra).
+alimento(agua).
+
+nicho(sucuri, pantano).
+
+especie_chave(Animal) :-
+    (come(Animal, agua) ; come(Animal, terra)),
+    (nicho(Animal, rios) ;
+     nicho(Animal, pantano) ;
+     nicho(Animal, profundezas)).
+Avaliação
+
+✅ Correto.
+
+A regra implementa exatamente:
+
+come água OU terra E possui nicho rios OU pântano OU profundezas.
+
+Query
+?- especie_chave(X).
+
+Resultado:
+
+X = sucuri.
+Exercício 2
+Enunciado
+
+Criar:
+
+especie_dominante(Animal)
+
+se possuir:
+
+pelo menos dois nichos diferentes
+local_comum = margens
+Seu código
+nicho(sucuri, pantano).
+nicho(sucuri, rios).
+
+local_comum(sucuri, margens).
+
+especie_dominante(Animal) :-
+    nicho(Animal, X),
+    nicho(Animal, Y),
+    X \= Y,
+    local_comum(Animal, margens).
+Avaliação
+
+✅ Correto.
+
+Você utilizou exatamente a dica fornecida:
+
+nicho(Animal, X),
+nicho(Animal, Y),
+X \= Y
+Query
+?- especie_dominante(X).
+
+Resultado:
+
+X = sucuri.
+Exercício 3
+Enunciado
+
+Criar:
+
+competidores_diretos(A,B)
+
+quando:
+
+A come Sol
+B come Sol
+A come Terra
+B come Terra
+A ≠ B
+Seu código
+competidores_diretos(A, B) :-
+    come(A, sol),
+    come(B, sol),
+    come(A, terra),
+    come(B, terra),
+    A \= B.
+Avaliação
+
+✅ Correto.
+
+Query
+?- competidores_diretos(X,Y).
+
+Resultados:
+
+X = girassol,
+Y = cacto ;
+
+X = girassol,
+Y = suculenta ;
+
+X = cacto,
+Y = girassol ;
+
+X = cacto,
+Y = suculenta ;
+
+X = suculenta,
+Y = girassol ;
+
+X = suculenta,
+Y = cacto.
+
+Observação:
+
+O Prolog retorna pares repetidos em ordem inversa. Isso é normal.
+
+Exercício 4
+Enunciado
+
+O exercício pede:
+
+Caso Base
+fluxo_energia(A,D) :-
+    come(A,D).
+Passo Recursivo
+fluxo_energia(A,D) :-
+    come(A,Z),
+    fluxo_energia(Z,D).
+Problema no seu código
+
+Você escreveu:
+
+fluxo_energia(sol, A) :-
+    come(A, sol).
+
+e
+
+fluxo_energia(A, D) :-
+    come(A, D),
+    D \= sol.
+
+Isso altera a lógica original do exercício.
+
+Além disso, no seu banco:
+
+come(girassol, sol).
+
+significa:
+
+girassol se alimenta do sol.
+
+Logo, o fluxo deveria ser inferido a partir dessa relação.
+
+Versão mais próxima do enunciado
+fluxo_energia(A, D) :-
+    come(A, D).
+
+fluxo_energia(A, D) :-
+    come(A, Z),
+    fluxo_energia(Z, D).
+Porém...
+
+No seu banco de dados não existe cadeia alimentar completa.
+
+Você tem:
+
+come(girassol, sol).
+come(cacto, sol).
+come(suculenta, sol).
+
+mas ninguém se alimenta de:
+
+girassol
+cacto
+suculenta
+
+Então a recursão praticamente não será utilizada.
+
+Para responder à query do exercício
+
+O exercício pergunta:
+
+Para quem o Sol envia energia (direta ou indiretamente)?
+
+Uma forma simples seria:
+
+recebe_energia(X) :-
+    fluxo_energia(X, sol).
+
+Consulta:
+
+?- recebe_energia(X).
+
+Resultado:
+
+X = girassol ;
+X = cacto ;
+X = suculenta.
+Conclusão
+Exercício	Situação
+Exercício 1	✅ Correto
+Exercício 2	✅ Correto
+Exercício 3	✅ Correto
+Exercício 4	⚠️ A lógica de fluxo_energia/2 não segue exatamente o enunciado
+
+Se o professor estiver corrigindo estritamente pelo que foi pedido, eu recomendaria substituir a regra do Exercício 4 por:
+
+fluxo_energia(A, D) :-
+    come(A, D).
+
+fluxo_energia(A, D) :-
+    come(A, Z),
+    fluxo_energia(Z, D).
+
+pois é a implementação literal do caso base e do passo recursivo descritos no enunciado.
+----------------------------------------------------------------------------------------------------------------------
+OBs: As informações reportadas pela IA foram claras, me ajudando a verificar o que estava errado e o que seria necessario ajustar. Porém, mantive o código existente e fui aumentando o banco de dados de acordo com os exercicios. 
